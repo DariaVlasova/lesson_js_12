@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>
+        Задача 3. Дано масив 30 випадкових цілих чисел. Підрахувати скільки було
+        обмінів під час сортування включеннями.
+      </h1>
+      <a class="button" href="./index.html">Повернутись до задач</a>
+      <script>
+        function getRandomNumber(minV, maxV) {
+          return minV + Math.floor(Math.random() * (maxV - minV + 1));
+        }
+        function getRandomArray(arrLength, minV, maxV) {
+          let arr = [];
+          for (let i = 0; i < arrLength; i++) {
+            const randNum = getRandomNumber(minV, maxV);
+            arr.push(randNum);
+          }
+          return arr;
+        }
+        const randomArr = getRandomArray(30, 1, 100);
+        function getChangedAmount(randomArr) {
+          let counter = 0;
+          let key, i;
+          for (let k = 1; k < randomArr.length; k++) {
+            key = randomArr[k];
+            i = k - 1;
+            while (i >= 0 && randomArr[i] > key) {
+              randomArr[i + 1] = randomArr[i];
+              i = i - 1;
+              counter++;
+            }
+            randomArr[i + 1] = key;
+          }
+          return counter;
+        }
+        const changeAmount = getChangedAmount(randomArr);
+        document.write(
+          `"${changeAmount}"було обмінів під час сортування включенням`
+        );
+      </script>
+    </div>
+  </body>
+</html>
